@@ -1,0 +1,35 @@
+lab_scheduling/
+├── gui_labs.py                     # GUI principal adaptada
+├── scheduling_labs.py              # Motor principal de scheduling
+├── configuracion_labs.xml          # Configuración específica laboratorios
+├── requirements.txt
+├── lab_scheduling.bat              # Ejecutor Windows
+└── modules/
+    ├── data_management/
+    │   ├── __init__.py
+    │   ├── laboratorios.py         # Gestión laboratorios
+    │   ├── asignaturas.py          # Gestión asignaturas
+    │   ├── profesores.py           # Gestión profesores
+    │   ├── alumnos.py              # Gestión alumnos
+    │   └── grupos.py               # Lógica agrupación
+    ├── scheduling/
+    │   ├── __init__.py
+    │   ├── calendario_academico.py # Adaptado de fechas_defensa.py
+    │   ├── grupo_optimizer.py      # Algoritmo grupos pares
+    │   ├── conflict_resolver.py    # Resolución conflictos
+    │   └── schedule_generator.py   # Motor principal scheduling
+    ├── web_automation/
+    │   ├── __init__.py
+    │   ├── web_scraper.py          # Adaptado de web_tfg.py
+    │   └── data_extractor.py       # Extracción datos web
+    └── utils/
+        ├── __init__.py
+        ├── data_validator.py       # Validación datos
+        ├── export_manager.py       # PDF/Excel export
+        └── config_manager.py       # Gestión configuración
+
+# ARCHIVOS CLAVE A ADAPTAR:
+# 1. gui.py → gui_labs.py (cambiar entidades TFG → Lab)
+# 2. horarios_tfg.py → scheduling_labs.py (nueva lógica)
+# 3. configuracion.xml → configuracion_labs.xml
+# 4. modules/utils/* → adaptar para laboratorios

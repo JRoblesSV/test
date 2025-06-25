@@ -1,0 +1,10 @@
+nombre,capacidad,equipamiento,disponible,edificio,planta
+Lab_Fisica_A,20,Equipos de medición básicos,Si,Edificio A,Planta 1
+Lab_Fisica_B,24,Equipos de medición avanzados,Si,Edificio A,Planta 2
+Lab_Quimica_A,18,Campana extractora + Material químico,Si,Edificio B,Planta 1
+Lab_Quimica_B,22,Campana extractora + Material químico,Si,Edificio B,Planta 2
+Lab_Electronica_A,16,Osciloscopios + Fuentes alimentación,Si,Edificio C,Planta 1
+Lab_Electronica_B,20,Osciloscopios + Generadores,Si,Edificio C,Planta 2
+Lab_Informatica_A,30,30 Ordenadores + Proyector,Si,Edificio D,Planta 1
+Lab_Informatica_B,25,25 Ordenadores + Pizarra digital,Si,Edificio D,Planta 2
+Lab_Informatica_C,28,28 Ordenadores + Software especializado,Si,Edificio D,Planta 3

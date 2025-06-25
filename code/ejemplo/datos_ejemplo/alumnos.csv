@@ -1,0 +1,17 @@
+dni,nombre,apellidos,asignatura,email
+12345678A,Juan,Pérez García,Física I,juan.perez@upm.es
+12345678A,Juan,Pérez García,Programación,juan.perez@upm.es
+23456789B,María,López Ruiz,Física I,maria.lopez@upm.es
+23456789B,María,López Ruiz,Química Orgánica,maria.lopez@upm.es
+34567890C,Carlos,González Díaz,Electrónica Digital,carlos.gonzalez@upm.es
+34567890C,Carlos,González Díaz,Programación,carlos.gonzalez@upm.es
+45678901D,Ana,Martín Sánchez,Química Orgánica,ana.martin@upm.es
+45678901D,Ana,Martín Sánchez,Física I,ana.martin@upm.es
+56789012E,Pedro,Fernández López,Programación,pedro.fernandez@upm.es
+67890123F,Laura,Rodríguez García,Química Orgánica,laura.rodriguez@upm.es
+67890123F,Laura,Rodríguez García,Electrónica Digital,laura.rodriguez@upm.es
+78901234G,Miguel,Jiménez Pérez,Física I,miguel.jimenez@upm.es
+89012345H,Carmen,Moreno López,Física I,carmen.moreno@upm.es
+89012345H,Carmen,Moreno López,Química Orgánica,carmen.moreno@upm.es
+89012345H,Carmen,Moreno López,Electrónica Digital,carmen.moreno@upm.es
+89012345H,Carmen,Moreno López,Programación,carmen.moreno@upm.es

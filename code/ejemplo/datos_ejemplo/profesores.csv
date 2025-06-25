@@ -1,0 +1,5 @@
+nombre,asignatura,disponibilidad_lunes,disponibilidad_martes,disponibilidad_miercoles,disponibilidad_jueves,disponibilidad_viernes,email
+Dr. García López,Física I,08:00-12:00;14:00-18:00,10:00-14:00,08:00-12:00;16:00-20:00,10:00-14:00,08:00-12:00,garcia.lopez@upm.es
+Dra. Martín Ruiz,Química Orgánica,09:00-13:00,09:00-13:00;15:00-19:00,10:00-14:00,09:00-13:00;15:00-19:00,10:00-14:00,martin.ruiz@upm.es
+Prof. González Díaz,Electrónica Digital,08:00-14:00,08:00-12:00,08:00-14:00,10:00-16:00,08:00-12:00,gonzalez.diaz@upm.es
+Dr. Fernández Pérez,Programación,10:00-14:00;16:00-20:00,08:00-12:00,10:00-14:00;16:00-20:00,08:00-12:00,10:00-14:00,fernandez.perez@upm.es
