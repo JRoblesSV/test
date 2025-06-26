@@ -18,9 +18,11 @@ class VerResultados(QtWidgets.QMainWindow):
         self.cargar_resultados()
 
     def setupUi(self):
+        """Configurar interfaz con mejor legibilidad"""
+        # ========= VENTANA MÁS GRANDE =========
         self.setObjectName("VerResultados")
-        self.resize(1400, 900)
-        self.setMinimumSize(QtCore.QSize(1400, 900))
+        self.resize(1600, 1000)  # Aumentado considerablemente
+        self.setMinimumSize(QtCore.QSize(1600, 1000))
         self.setWindowTitle("OPTIM - Resultados de Programación")
 
         self.centralwidget = QtWidgets.QWidget(self)
@@ -35,43 +37,24 @@ class VerResultados(QtWidgets.QMainWindow):
         # ========= BOTONES =========
         self.setup_botones()
 
-        # ========= TEMA OSCURO =========
-        self.apply_dark_theme()
+        # ========= TEMA OSCURO LEGIBLE =========
+        self.apply_dark_theme_legible()
 
     def setup_header(self):
-        """Header con título y estadísticas"""
+        """Header con título y estadísticas - MÁS GRANDE"""
         self.titulo = QtWidgets.QLabel(self.centralwidget)
-        self.titulo.setGeometry(QtCore.QRect(50, 10, 1300, 35))
+        self.titulo.setGeometry(QtCore.QRect(50, 10, 1500, 45))  # Más grande
         self.titulo.setText("Resultados de Programación de Laboratorios")
         self.titulo.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.titulo.setStyleSheet("""
-            QLabel {
-                color: rgb(42,130,218);
-                font-size: 18px;
-                font-weight: bold;
-                background-color: rgb(35,35,35);
-                border: 1px solid rgb(42,130,218);
-                border-radius: 5px;
-                padding: 8px;
-            }
-        """)
 
-        # Panel de estadísticas
+        # Panel de estadísticas más grande
         self.panel_estadisticas = QtWidgets.QFrame(self.centralwidget)
-        self.panel_estadisticas.setGeometry(QtCore.QRect(50, 60, 1300, 80))
-        self.panel_estadisticas.setStyleSheet("""
-            QFrame {
-                background-color: rgb(35,35,35);
-                border: 1px solid rgb(127,127,127);
-                border-radius: 5px;
-            }
-        """)
+        self.panel_estadisticas.setGeometry(QtCore.QRect(50, 70, 1500, 100))  # Más alto
 
-        # Estadísticas individuales
         self.setup_estadisticas()
 
     def setup_estadisticas(self):
-        """Panel de estadísticas principales"""
+        """Panel de estadísticas principales - MÁS GRANDES"""
         stats_data = [
             ("📊 Total Grupos", "total_grupos", "0"),
             ("✅ Asignados", "grupos_asignados", "0"),
@@ -84,26 +67,24 @@ class VerResultados(QtWidgets.QMainWindow):
         self.labels_stats = {}
 
         for i, (titulo, key, valor_default) in enumerate(stats_data):
-            x_pos = 70 + (i * 210)
+            x_pos = 100 + (i * 240)  # Más separación
 
-            # Título
+            # Título más grande
             label_titulo = QtWidgets.QLabel(self.panel_estadisticas)
-            label_titulo.setGeometry(QtCore.QRect(x_pos, 15, 200, 20))
+            label_titulo.setGeometry(QtCore.QRect(x_pos, 15, 220, 25))  # Más alto
             label_titulo.setText(titulo)
-            label_titulo.setStyleSheet("color: white; font-size: 11px; font-weight: bold;")
 
-            # Valor
+            # Valor más grande
             label_valor = QtWidgets.QLabel(self.panel_estadisticas)
-            label_valor.setGeometry(QtCore.QRect(x_pos, 35, 200, 25))
+            label_valor.setGeometry(QtCore.QRect(x_pos, 45, 220, 35))  # Más alto
             label_valor.setText(valor_default)
-            label_valor.setStyleSheet("color: rgb(42,130,218); font-size: 16px; font-weight: bold;")
 
             self.labels_stats[key] = label_valor
 
     def setup_tabs(self):
-        """Configurar tabs principales"""
+        """Configurar tabs principales - MÁS GRANDES"""
         self.tab_widget = QtWidgets.QTabWidget(self.centralwidget)
-        self.tab_widget.setGeometry(QtCore.QRect(50, 160, 1300, 650))
+        self.tab_widget.setGeometry(QtCore.QRect(50, 190, 1500, 700))  # Mucho más grande
 
         # Tab 1: Vista por Laboratorio
         self.tab_laboratorios = QtWidgets.QWidget()
@@ -120,90 +101,76 @@ class VerResultados(QtWidgets.QMainWindow):
         self.tab_widget.addTab(self.tab_calendario, "📅 Vista Calendario")
         self.setup_tab_calendario()
 
-        # Tab 4: Conflictos y Problemas
-        self.tab_problemas = QtWidgets.QWidget()
-        self.tab_widget.addTab(self.tab_problemas, "⚠️ Problemas")
-        self.setup_tab_problemas()
-
-        # Tab 5: Exportar
+        # Tab 4: Exportar
         self.tab_exportar = QtWidgets.QWidget()
         self.tab_widget.addTab(self.tab_exportar, "📤 Exportar")
         self.setup_tab_exportar()
 
     def setup_tab_laboratorios(self):
-        """Tab vista por laboratorio"""
-        # Lista de laboratorios
+        """Tab vista por laboratorio - MÁS GRANDE"""
+        # Lista de laboratorios más grande
         self.lista_labs = QtWidgets.QListWidget(self.tab_laboratorios)
-        self.lista_labs.setGeometry(QtCore.QRect(20, 20, 250, 560))
+        self.lista_labs.setGeometry(QtCore.QRect(20, 20, 300, 620))  # Más grande
         self.lista_labs.currentRowChanged.connect(self.mostrar_detalle_laboratorio)
 
-        # Detalle del laboratorio seleccionado
+        # Detalle del laboratorio más grande
         self.detalle_lab = QtWidgets.QTextEdit(self.tab_laboratorios)
-        self.detalle_lab.setGeometry(QtCore.QRect(290, 20, 500, 560))
+        self.detalle_lab.setGeometry(QtCore.QRect(340, 20, 600, 620))  # Más grande
         self.detalle_lab.setReadOnly(True)
 
-        # Tabla de horarios del laboratorio
+        # Tabla de horarios más grande
         self.tabla_lab = QtWidgets.QTableWidget(self.tab_laboratorios)
-        self.tabla_lab.setGeometry(QtCore.QRect(810, 20, 460, 560))
+        self.tabla_lab.setGeometry(QtCore.QRect(960, 20, 520, 620))  # Más grande
         self.tabla_lab.setColumnCount(5)
         self.tabla_lab.setHorizontalHeaderLabels(['Día', 'Hora', 'Asignatura', 'Grupo', 'Alumnos'])
         self.tabla_lab.horizontalHeader().setStretchLastSection(True)
 
     def setup_tab_asignaturas(self):
-        """Tab vista por asignatura"""
-        # Lista de asignaturas
+        """Tab vista por asignatura - MÁS GRANDE"""
+        # Lista de asignaturas más grande
         self.lista_asignaturas = QtWidgets.QListWidget(self.tab_asignaturas)
-        self.lista_asignaturas.setGeometry(QtCore.QRect(20, 20, 250, 560))
+        self.lista_asignaturas.setGeometry(QtCore.QRect(20, 20, 300, 620))
         self.lista_asignaturas.currentRowChanged.connect(self.mostrar_detalle_asignatura)
 
-        # Detalle de la asignatura
+        # Detalle de la asignatura más grande
         self.detalle_asignatura = QtWidgets.QTextEdit(self.tab_asignaturas)
-        self.detalle_asignatura.setGeometry(QtCore.QRect(290, 20, 500, 560))
+        self.detalle_asignatura.setGeometry(QtCore.QRect(340, 20, 600, 620))
         self.detalle_asignatura.setReadOnly(True)
 
-        # Tabla de grupos de la asignatura
+        # Tabla de grupos más grande
         self.tabla_grupos = QtWidgets.QTableWidget(self.tab_asignaturas)
-        self.tabla_grupos.setGeometry(QtCore.QRect(810, 20, 460, 560))
+        self.tabla_grupos.setGeometry(QtCore.QRect(960, 20, 520, 620))
         self.tabla_grupos.setColumnCount(5)
         self.tabla_grupos.setHorizontalHeaderLabels(['Grupo', 'Día', 'Hora', 'Laboratorio', 'Alumnos'])
         self.tabla_grupos.horizontalHeader().setStretchLastSection(True)
 
     def setup_tab_calendario(self):
-        """Tab vista calendario"""
-        # Calendario
+        """Tab vista calendario - MÁS GRANDE"""
+        # Calendario más grande
         self.calendario_resultado = QtWidgets.QCalendarWidget(self.tab_calendario)
-        self.calendario_resultado.setGeometry(QtCore.QRect(20, 20, 600, 400))
+        self.calendario_resultado.setGeometry(QtCore.QRect(20, 20, 700, 500))  # Más grande
         self.calendario_resultado.clicked.connect(self.mostrar_dia_calendario)
 
-        # Panel de día seleccionado
+        # Panel de día seleccionado más grande
         self.panel_dia = QtWidgets.QFrame(self.tab_calendario)
-        self.panel_dia.setGeometry(QtCore.QRect(640, 20, 630, 400))
-        self.panel_dia.setStyleSheet("""
-            QFrame {
-                background-color: rgb(35,35,35);
-                border: 1px solid rgb(127,127,127);
-                border-radius: 5px;
-            }
-        """)
+        self.panel_dia.setGeometry(QtCore.QRect(740, 20, 740, 500))  # Más grande
 
         self.label_dia_sel = QtWidgets.QLabel(self.panel_dia)
-        self.label_dia_sel.setGeometry(QtCore.QRect(20, 20, 590, 25))
+        self.label_dia_sel.setGeometry(QtCore.QRect(20, 20, 700, 30))  # Más grande
         self.label_dia_sel.setText("Selecciona un día en el calendario")
-        self.label_dia_sel.setStyleSheet("color: rgb(42,130,218); font-size: 14px; font-weight: bold;")
 
         self.detalle_dia = QtWidgets.QTextEdit(self.panel_dia)
-        self.detalle_dia.setGeometry(QtCore.QRect(20, 55, 590, 325))
+        self.detalle_dia.setGeometry(QtCore.QRect(20, 60, 700, 420))  # Más grande
         self.detalle_dia.setReadOnly(True)
 
-        # Leyenda del calendario
+        # Leyenda del calendario más grande
         self.setup_leyenda_calendario()
 
     def setup_leyenda_calendario(self):
-        """Leyenda para el calendario"""
+        """Leyenda para el calendario - MÁS GRANDE"""
         self.label_leyenda = QtWidgets.QLabel(self.tab_calendario)
-        self.label_leyenda.setGeometry(QtCore.QRect(20, 440, 600, 20))
+        self.label_leyenda.setGeometry(QtCore.QRect(20, 540, 700, 25))  # Más grande
         self.label_leyenda.setText("Leyenda del Calendario:")
-        self.label_leyenda.setStyleSheet("color: white; font-weight: bold; font-size: 12px;")
 
         leyenda_items = [
             "🟩 Con Clases Programadas",
@@ -214,112 +181,94 @@ class VerResultados(QtWidgets.QMainWindow):
 
         for i, item in enumerate(leyenda_items):
             label = QtWidgets.QLabel(self.tab_calendario)
-            label.setGeometry(QtCore.QRect(20 + (i * 150), 470, 140, 20))
+            label.setGeometry(QtCore.QRect(20 + (i * 180), 575, 170, 25))  # Más separación
             label.setText(item)
-            label.setStyleSheet("color: white; font-size: 10px;")
-
-    def setup_tab_problemas(self):
-        """Tab de problemas y conflictos"""
-        # Lista de tipos de problemas
-        self.lista_problemas = QtWidgets.QListWidget(self.tab_problemas)
-        self.lista_problemas.setGeometry(QtCore.QRect(20, 20, 300, 560))
-
-        tipos_problemas = [
-            "❌ Conflictos de Horario",
-            "⚠️ Grupos Sin Asignar",
-            "🔄 Grupos Desequilibrados",
-            "🏢 Laboratorios Sobrecargados",
-            "👨‍🏫 Profesores Conflictivos",
-            "📊 Estadísticas Generales"
-        ]
-
-        for problema in tipos_problemas:
-            self.lista_problemas.addItem(problema)
-
-        self.lista_problemas.currentRowChanged.connect(self.mostrar_detalle_problema)
-
-        # Detalle del problema
-        self.detalle_problema = QtWidgets.QTextEdit(self.tab_problemas)
-        self.detalle_problema.setGeometry(QtCore.QRect(340, 20, 930, 560))
-        self.detalle_problema.setReadOnly(True)
 
     def setup_tab_exportar(self):
-        """Tab de exportación"""
-        # Opciones de exportación
+        """Tab de exportación - MÁS GRANDE"""
+        # Título más grande
         self.label_exportar = QtWidgets.QLabel(self.tab_exportar)
-        self.label_exportar.setGeometry(QtCore.QRect(50, 30, 400, 25))
+        self.label_exportar.setGeometry(QtCore.QRect(50, 30, 500, 30))  # Más grande
         self.label_exportar.setText("Opciones de Exportación")
-        self.label_exportar.setStyleSheet("color: rgb(42,130,218); font-size: 16px; font-weight: bold;")
 
-        # Formatos
+        # Checkboxes más grandes y espaciados
+        y_start = 80
+        spacing = 40
+
         self.check_excel = QtWidgets.QCheckBox(self.tab_exportar)
-        self.check_excel.setGeometry(QtCore.QRect(50, 80, 200, 20))
+        self.check_excel.setGeometry(QtCore.QRect(50, y_start, 250, 25))
         self.check_excel.setText("📊 Exportar a Excel")
         self.check_excel.setChecked(True)
 
         self.check_pdf = QtWidgets.QCheckBox(self.tab_exportar)
-        self.check_pdf.setGeometry(QtCore.QRect(50, 110, 200, 20))
+        self.check_pdf.setGeometry(QtCore.QRect(50, y_start + spacing, 250, 25))
         self.check_pdf.setText("📄 Exportar a PDF")
         self.check_pdf.setChecked(True)
 
         self.check_csv = QtWidgets.QCheckBox(self.tab_exportar)
-        self.check_csv.setGeometry(QtCore.QRect(50, 140, 200, 20))
+        self.check_csv.setGeometry(QtCore.QRect(50, y_start + spacing * 2, 250, 25))
         self.check_csv.setText("📋 Exportar a CSV")
 
-        # Contenido a exportar
+        # Contenido a exportar más espaciado
+        content_y = y_start + spacing * 3 + 20
         self.label_contenido = QtWidgets.QLabel(self.tab_exportar)
-        self.label_contenido.setGeometry(QtCore.QRect(50, 180, 300, 20))
+        self.label_contenido.setGeometry(QtCore.QRect(50, content_y, 400, 25))
         self.label_contenido.setText("Contenido a Exportar:")
-        self.label_contenido.setStyleSheet("color: white; font-weight: bold;")
 
         self.check_horarios = QtWidgets.QCheckBox(self.tab_exportar)
-        self.check_horarios.setGeometry(QtCore.QRect(50, 210, 250, 20))
+        self.check_horarios.setGeometry(QtCore.QRect(50, content_y + 35, 300, 25))
         self.check_horarios.setText("Horarios por Laboratorio")
         self.check_horarios.setChecked(True)
 
         self.check_grupos = QtWidgets.QCheckBox(self.tab_exportar)
-        self.check_grupos.setGeometry(QtCore.QRect(50, 240, 250, 20))
+        self.check_grupos.setGeometry(QtCore.QRect(50, content_y + 70, 300, 25))
         self.check_grupos.setText("Grupos por Asignatura")
         self.check_grupos.setChecked(True)
 
         self.check_estadisticas_exp = QtWidgets.QCheckBox(self.tab_exportar)
-        self.check_estadisticas_exp.setGeometry(QtCore.QRect(50, 270, 250, 20))
+        self.check_estadisticas_exp.setGeometry(QtCore.QRect(50, content_y + 105, 300, 25))
         self.check_estadisticas_exp.setText("Estadísticas y Resumen")
         self.check_estadisticas_exp.setChecked(True)
 
-        # Botones de exportación
+        # Botones más grandes
+        button_y = content_y + 160
         self.btn_exportar = QtWidgets.QPushButton(self.tab_exportar)
-        self.btn_exportar.setGeometry(QtCore.QRect(50, 320, 150, 40))
+        self.btn_exportar.setGeometry(QtCore.QRect(50, button_y, 160, 45))  # Más grande
         self.btn_exportar.setText("🚀 Exportar Todo")
         self.btn_exportar.clicked.connect(self.exportar_resultados)
 
         self.btn_preview = QtWidgets.QPushButton(self.tab_exportar)
-        self.btn_preview.setGeometry(QtCore.QRect(220, 320, 150, 40))
+        self.btn_preview.setGeometry(QtCore.QRect(230, button_y, 160, 45))  # Más grande
         self.btn_preview.setText("👁️ Vista Previa")
         self.btn_preview.clicked.connect(self.mostrar_preview)
 
-        # Área de preview
+        # Área de preview más grande
         self.preview_exportar = QtWidgets.QTextEdit(self.tab_exportar)
-        self.preview_exportar.setGeometry(QtCore.QRect(400, 30, 850, 530))
+        self.preview_exportar.setGeometry(QtCore.QRect(450, 30, 1000, 600))  # Mucho más grande
         self.preview_exportar.setReadOnly(True)
         self.preview_exportar.setPlaceholderText("Haz clic en 'Vista Previa' para ver cómo se exportarán los datos...")
 
     def setup_botones(self):
-        """Botones principales"""
+        """Botones principales - MÁS GRANDES"""
+        y_buttons = 920
+        x_center = 650
+
         self.btn_actualizar = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_actualizar.setGeometry(QtCore.QRect(500, 830, 120, 40))
+        self.btn_actualizar.setGeometry(QtCore.QRect(x_center, y_buttons, 140, 50))  # Más grandes
         self.btn_actualizar.setText("🔄 Actualizar")
         self.btn_actualizar.clicked.connect(self.cargar_resultados)
 
         self.btn_abrir_archivo = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_abrir_archivo.setGeometry(QtCore.QRect(630, 830, 150, 40))
+        self.btn_abrir_archivo.setGeometry(QtCore.QRect(x_center + 160, y_buttons, 160, 50))
         self.btn_abrir_archivo.setText("📂 Abrir Archivo")
         self.btn_abrir_archivo.clicked.connect(self.abrir_archivo_externo)
 
         self.btn_cerrar = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_cerrar.setGeometry(QtCore.QRect(790, 830, 120, 40))
+        self.btn_cerrar.setGeometry(QtCore.QRect(x_center + 340, y_buttons, 140, 50))
         self.btn_cerrar.setText("✅ Cerrar")
         self.btn_cerrar.clicked.connect(self.close)
+
+    # ========= MÉTODOS FUNCIONALES =========
 
     def cargar_resultados(self):
         """Cargar resultados desde archivo"""
@@ -328,7 +277,6 @@ class VerResultados(QtWidgets.QMainWindow):
                 self.mostrar_datos_ejemplo()
                 return
 
-            # Cargar Excel
             self.datos_horarios = pd.read_excel(self.archivo_resultado)
             self.calcular_estadisticas()
             self.actualizar_todas_vistas()
@@ -339,7 +287,6 @@ class VerResultados(QtWidgets.QMainWindow):
 
     def mostrar_datos_ejemplo(self):
         """Mostrar datos de ejemplo cuando no hay archivo"""
-        # Datos de ejemplo para testing
         self.datos_horarios = pd.DataFrame({
             'Asignatura': ['Física I', 'Física I', 'Química Orgánica', 'Programación', 'Electrónica'],
             'Grupo': ['Física_I_G1', 'Física_I_G2', 'Quimica_G1', 'Prog_G1', 'Elec_G1'],
@@ -364,24 +311,16 @@ class VerResultados(QtWidgets.QMainWindow):
             'grupos_asignados': len(self.datos_horarios[self.datos_horarios['Estado'] == 'Asignado']),
             'conflictos': len(self.datos_horarios[self.datos_horarios['Estado'] == 'Conflicto']),
             'labs_usados': f"{self.datos_horarios['Laboratorio'].nunique()}/{self.datos_horarios['Laboratorio'].nunique() + 3}",
-            'equilibrio': "95%",  # Calcular equilibrio real
+            'equilibrio': "95%",
             'tiempo_ejecucion': "4.2s"
         }
 
-        # Actualizar labels de estadísticas
         for key, valor in self.estadisticas.items():
             if key in self.labels_stats:
                 self.labels_stats[key].setText(str(valor))
 
     def actualizar_todas_vistas(self):
         """Actualizar todas las vistas con los nuevos datos"""
-        self.actualizar_vista_laboratorios()
-        self.actualizar_vista_asignaturas()
-        self.actualizar_vista_calendario()
-        self.actualizar_vista_problemas()
-
-    def actualizar_vista_laboratorios(self):
-        """Actualizar vista por laboratorios"""
         self.lista_labs.clear()
         if self.datos_horarios is not None:
             laboratorios = self.datos_horarios['Laboratorio'].unique()
@@ -389,35 +328,12 @@ class VerResultados(QtWidgets.QMainWindow):
                 item = QtWidgets.QListWidgetItem(f"🏢 {lab}")
                 self.lista_labs.addItem(item)
 
-    def actualizar_vista_asignaturas(self):
-        """Actualizar vista por asignaturas"""
         self.lista_asignaturas.clear()
         if self.datos_horarios is not None:
             asignaturas = self.datos_horarios['Asignatura'].unique()
             for asig in sorted(asignaturas):
                 item = QtWidgets.QListWidgetItem(f"📚 {asig}")
                 self.lista_asignaturas.addItem(item)
-
-    def actualizar_vista_calendario(self):
-        """Actualizar vista calendario"""
-        # Aplicar formato al calendario basado en datos
-        if self.datos_horarios is not None:
-            # Formato para días con clases
-            formato_con_clase = QtGui.QTextCharFormat()
-            formato_con_clase.setBackground(QtGui.QColor(46, 204, 113))
-            formato_con_clase.setForeground(QtGui.QColor(255, 255, 255))
-
-            # Por ahora, marcar algunos días de ejemplo
-            fecha_actual = QtCore.QDate.currentDate()
-            for i in range(7):
-                fecha = fecha_actual.addDays(i)
-                if fecha.dayOfWeek() <= 5:  # Lunes a Viernes
-                    self.calendario_resultado.setDateTextFormat(fecha, formato_con_clase)
-
-    def actualizar_vista_problemas(self):
-        """Actualizar vista de problemas"""
-        # Se actualizará cuando se seleccione un tipo de problema
-        pass
 
     def mostrar_detalle_laboratorio(self, row):
         """Mostrar detalle del laboratorio seleccionado"""
@@ -427,7 +343,6 @@ class VerResultados(QtWidgets.QMainWindow):
         lab_text = self.lista_labs.item(row).text().replace("🏢 ", "")
         datos_lab = self.datos_horarios[self.datos_horarios['Laboratorio'] == lab_text]
 
-        # Actualizar detalle
         detalle = f"LABORATORIO: {lab_text}\n"
         detalle += "=" * 50 + "\n\n"
         detalle += f"📊 Estadísticas:\n"
@@ -463,7 +378,6 @@ class VerResultados(QtWidgets.QMainWindow):
         asig_text = self.lista_asignaturas.item(row).text().replace("📚 ", "")
         datos_asig = self.datos_horarios[self.datos_horarios['Asignatura'] == asig_text]
 
-        # Actualizar detalle
         detalle = f"ASIGNATURA: {asig_text}\n"
         detalle += "=" * 50 + "\n\n"
         detalle += f"📊 Estadísticas:\n"
@@ -492,7 +406,6 @@ class VerResultados(QtWidgets.QMainWindow):
         fecha_str = fecha.toString("dddd, dd MMMM yyyy")
         self.label_dia_sel.setText(f"📅 {fecha_str}")
 
-        # Buscar clases para este día (simulado)
         dia_semana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'][fecha.dayOfWeek() - 1]
 
         if self.datos_horarios is not None:
@@ -510,45 +423,6 @@ class VerResultados(QtWidgets.QMainWindow):
             detalle = "No hay datos de horarios cargados"
 
         self.detalle_dia.setText(detalle)
-
-    def mostrar_detalle_problema(self, row):
-        """Mostrar detalle del problema seleccionado"""
-        if row == -1:
-            return
-
-        tipos_problemas = [
-            "Conflictos de Horario",
-            "Grupos Sin Asignar",
-            "Grupos Desequilibrados",
-            "Laboratorios Sobrecargados",
-            "Profesores Conflictivos",
-            "Estadísticas Generales"
-        ]
-
-        problema = tipos_problemas[row]
-
-        # Generar contenido según el tipo
-        if problema == "Conflictos de Horario":
-            contenido = "❌ CONFLICTOS DE HORARIO\n\n"
-            contenido += "No se detectaron conflictos de horario.\n"
-            contenido += "✅ Todos los grupos tienen horarios únicos.\n"
-            contenido += "✅ No hay solapamiento de laboratorios.\n"
-
-        elif problema == "Grupos Sin Asignar":
-            contenido = "⚠️ GRUPOS SIN ASIGNAR\n\n"
-            contenido += "Todos los grupos han sido asignados correctamente.\n"
-            contenido += f"✅ {self.estadisticas.get('grupos_asignados', 0)} grupos asignados de {self.estadisticas.get('total_grupos', 0)} totales.\n"
-
-        elif problema == "Estadísticas Generales":
-            contenido = "📊 ESTADÍSTICAS GENERALES\n\n"
-            for key, valor in self.estadisticas.items():
-                key_display = key.replace('_', ' ').title()
-                contenido += f"• {key_display}: {valor}\n"
-
-        else:
-            contenido = f"Análisis de {problema} no implementado aún."
-
-        self.detalle_problema.setText(contenido)
 
     def mostrar_preview(self):
         """Mostrar vista previa de exportación"""
@@ -590,7 +464,6 @@ class VerResultados(QtWidgets.QMainWindow):
                 self.mostrar_mensaje("⚠️ Aviso", "Selecciona al menos un formato para exportar")
                 return
 
-            # Simular exportación
             archivos_generados = []
             for formato in formatos:
                 archivo = f"horarios_laboratorios.{formato.lower()}"
@@ -622,8 +495,8 @@ class VerResultados(QtWidgets.QMainWindow):
         msg_box.setText(mensaje)
         msg_box.exec()
 
-    def apply_dark_theme(self):
-        """Aplicar tema oscuro"""
+    def apply_dark_theme_legible(self):
+        """Aplicar tema oscuro con fuentes legibles"""
         self.setStyleSheet("""
             QMainWindow {
                 background-color: rgb(53,53,53);
@@ -633,21 +506,25 @@ class VerResultados(QtWidgets.QMainWindow):
                 background-color: rgb(53,53,53);
                 color: white;
                 font-family: 'Segoe UI', Arial, sans-serif;
+                font-size: 12px;
             }
             QLabel {
                 color: white;
-                font-size: 11px;
+                font-size: 13px;
+                font-weight: bold;
             }
             QPushButton {
                 background-color: rgb(53,53,53);
                 color: white;
                 border: 1px solid rgb(127,127,127);
-                padding: 8px;
-                font-size: 10px;
-                border-radius: 3px;
+                padding: 10px;
+                font-size: 12px;
+                font-weight: bold;
+                border-radius: 4px;
             }
             QPushButton:hover {
                 background-color: rgb(66,66,66);
+                border: 1px solid rgb(42,130,218);
             }
             QTabWidget::pane {
                 border: 1px solid rgb(127,127,127);
@@ -657,8 +534,10 @@ class VerResultados(QtWidgets.QMainWindow):
                 background-color: rgb(53,53,53);
                 color: white;
                 border: 1px solid rgb(127,127,127);
-                padding: 8px 16px;
+                padding: 12px 20px;
                 margin-right: 2px;
+                font-size: 12px;
+                font-weight: bold;
             }
             QTabBar::tab:selected {
                 background-color: rgb(42,130,218);
@@ -671,17 +550,25 @@ class VerResultados(QtWidgets.QMainWindow):
                 background-color: rgb(42,42,42);
                 color: white;
                 border: 1px solid rgb(127,127,127);
+                font-size: 12px;
                 selection-background-color: rgb(42,130,218);
+                border-radius: 3px;
+            }
+            QListWidget::item {
+                padding: 10px;
+                border-bottom: 1px solid rgb(60,60,60);
             }
             QTableWidget {
                 background-color: rgb(42,42,42);
                 color: white;
                 border: 1px solid rgb(127,127,127);
                 gridline-color: rgb(127,127,127);
+                font-size: 11px;
+                border-radius: 3px;
             }
             QTableWidget::item {
                 border-bottom: 1px solid rgb(127,127,127);
-                padding: 5px;
+                padding: 8px;
             }
             QTableWidget::item:selected {
                 background-color: rgb(42,130,218);
@@ -690,38 +577,56 @@ class VerResultados(QtWidgets.QMainWindow):
                 background-color: rgb(35,35,35);
                 color: white;
                 border: 1px solid rgb(127,127,127);
-                padding: 5px;
+                padding: 8px;
+                font-weight: bold;
+                font-size: 11px;
             }
             QTextEdit {
                 background-color: rgb(42,42,42);
                 color: white;
                 border: 1px solid rgb(127,127,127);
                 font-family: 'Consolas', monospace;
-                font-size: 10px;
+                font-size: 11px;
+                line-height: 1.4;
+                padding: 8px;
+                border-radius: 3px;
             }
             QCalendarWidget {
                 background-color: rgb(42,42,42);
                 color: white;
                 border: 1px solid rgb(127,127,127);
+                font-size: 12px;
             }
             QCalendarWidget QToolButton {
                 background-color: rgb(53,53,53);
                 color: white;
                 border: 1px solid rgb(127,127,127);
+                font-size: 12px;
             }
             QCheckBox {
                 color: white;
-                font-size: 11px;
+                font-size: 12px;
+                font-weight: bold;
             }
             QCheckBox::indicator {
-                width: 12px;
-                height: 12px;
+                width: 16px;
+                height: 16px;
                 border: 1px solid rgb(127,127,127);
                 background-color: rgb(42,42,42);
             }
             QCheckBox::indicator:checked {
                 background-color: rgb(42,130,218);
                 border: 1px solid rgb(42,130,218);
+            }
+            QFrame {
+                background-color: rgb(35,35,35);
+                border: 1px solid rgb(127,127,127);
+                border-radius: 5px;
+            }
+            QMessageBox {
+                background-color: rgb(53,53,53);
+                color: white;
+                font-size: 12px;
             }
         """)
 
