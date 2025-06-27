@@ -1,6 +1,5 @@
-
-# requirements_light.txt - SOLO LO ESENCIAL PARA EMPEZAR
-# =====================================================
+# requirements.txt - OPTIM Sistema de Programación de Laboratorios
+# =====================================================================
 
 # GUI - Interfaz gráfica
 PyQt6==6.3.0
@@ -10,19 +9,71 @@ pandas==1.4.1
 numpy==1.22.2
 openpyxl==3.0.9
 
-# Opcional - Solo si necesitas PDF
-# reportlab==3.6.0
+# Web Scraping y RPA - Para obtener calendario automáticamente
+rpaframework==12.8.2
+selenium==4.5.0
 
-# Opcional - Solo si necesitas gráficos
-# matplotlib==3.5.2
+# PDF Processing - Para procesar calendarios en PDF
+PyMuPDF==1.19.6
 
-# los de antes
-#xlrd==2.0.1
-#rpaframework==12.8.2
-#selenium==4.5.0
-#PyMuPDF==1.19.6
-#reportlab==3.6.0
-#matplotlib==3.5.2
-#seaborn==0.11.2
-#python-dateutil==2.8.2
-#xlsxwriter==3.0.3
+# Opcional - Solo si necesitas PDF en exportación
+reportlab==3.6.0
+
+# Opcional - Solo si necesitas gráficos en resultados
+matplotlib==3.5.2
+
+# Fechas y utilidades
+python-dateutil==2.8.2
+
+# Exportación Excel avanzada
+xlsxwriter==3.0.3
+
+# Procesamiento de archivos Excel antiguos
+xlrd==2.0.1
+
+# ====================================
+# DEPENDENCIAS COMENTADAS (por si necesitas activarlas)
+# ====================================
+
+# Para gráficos avanzados:
+# seaborn==0.11.2
+
+# Para análisis estadístico:
+# scipy==1.8.1
+
+# Para machine learning (si decides implementar IA):
+# scikit-learn==1.1.1
+
+# Para procesamiento de texto avanzado:
+# nltk==3.7
+
+# Para APIs REST (si conectas con otros sistemas):
+# requests==2.28.1
+
+# Para caching de datos:
+# redis==4.3.4
+
+# ====================================
+# NOTAS DE INSTALACIÓN
+# ====================================
+
+# INSTALACIÓN BÁSICA:
+# pip install -r requirements.txt
+
+# INSTALACIÓN SOLO ESENCIAL (sin web scraping):
+# pip install PyQt6==6.3.0 pandas==1.4.1 numpy==1.22.2 openpyxl==3.0.9
+
+# RESOLUCIÓN DE CONFLICTOS:
+# Si hay problemas con PyQt6:
+# pip install --upgrade pip
+# pip install PyQt6 --force-reinstall
+
+# Si hay problemas con RPA Framework:
+# pip install rpaframework --no-deps
+# pip install selenium webdriver-manager
+
+# TESTING MÓDULOS:
+# python -c "import PyQt6; print('PyQt6 OK')"
+# python -c "import pandas; print('Pandas OK')"  
+# python -c "import RPA.Browser.Selenium; print('RPA OK')"
+# python -c "import fitz; print('PyMuPDF OK')"
